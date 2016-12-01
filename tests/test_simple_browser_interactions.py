@@ -1,14 +1,8 @@
-import pytest
-from selenium import webdriver
+from tests.test_base import TestBase
 
 
-class TestSelenium:
-    @pytest.fixture
-    def driver(self, request):
-        wd = webdriver.Chrome()
-        request.addfinalizer(wd.quit)
-        return wd
-
+class TestSelenium(TestBase):
     def test_open_close_browser(self, driver):
         driver.get("http://google.com")
+
         assert True

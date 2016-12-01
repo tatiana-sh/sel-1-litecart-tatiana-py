@@ -1,26 +1,20 @@
-import pytest
-from selenium import webdriver
+from pages.locators import AdminLoginPageLocators
+from tests.test_base import TestBase
 
 
-class TestLitecartAdminLogin:
-    @pytest.fixture
-    def driver(self, request):
-        wd = webdriver.Chrome()
-        wd.implicitly_wait(10)
-        request.addfinalizer(wd.quit)
-        return wd
+class TestLitecartAdminLogin(TestBase):
 
     def test_admin_should_be_able_to_login_successfully(self, driver):
-        driver.get("http://localhost/litecart/admin/login.php")
+        self.driver.get(AdminLoginPageLocators.BASE_URL)
 
-        username_input = driver.find_element_by_name("username")
-        password_input = driver.find_element_by_name("password")
-        login_btn = driver.find_element_by_name("login")
+        username_input = self.driver.find_element(*AdminLoginPageLocators.USERNAME_INPUT)
+        password_input = self.driver.find_element(*AdminLoginPageLocators.PASSWORD_INPUT)
+        login_btn = self.driver.find_element(*AdminLoginPageLocators.LOGIN_BUTTON)
 
         username_input.send_keys("admin")
         password_input.send_keys("admin")
         login_btn.click()
 
-        logout_btn = driver.find_element_by_css_selector("[title='Logout']")
+        logout_btn = self.driver.find_element(*AdminLoginPageLocators.LOGOUT_BUTTON)
 
         assert logout_btn.is_displayed()
