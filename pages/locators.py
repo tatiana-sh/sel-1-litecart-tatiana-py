@@ -17,6 +17,7 @@ class AdminPageLocators(object):
 
 class MainPageLocators(object):
     BASE_URL = "http://localhost/litecart/en/"
-    SECOND_PRODUCT_STICKER = (By.CSS_SELECTOR, ".product .sticker:nth-of-type(2)")
+    PRODUCT = (By.CSS_SELECTOR, ".product")
+    PRODUCT_STICKER = (By.CSS_SELECTOR, ".sticker")
     NAVIGATION_MENU_ITEM = (By.CSS_SELECTOR, "#box-category-tree .content > ul > li > a")
     NAVIGATION_MENU_ITEM_SUBNODE = (By.CSS_SELECTOR, "#box-category-tree .content > ul > li li > a")
