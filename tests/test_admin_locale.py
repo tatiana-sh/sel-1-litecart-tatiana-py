@@ -19,43 +19,46 @@ class TestAdminLocale(TestBase):
         login_btn.click()
 
     @pytest.mark.parametrize("base_url", [
-        (AdminPageLocators.BASE_URL_COUNTRIES),
-        (AdminPageLocators.BASE_URL_GEOZONES)
+        (AdminPageLocators.COUNTRIES_BASE_URL),
+        (AdminPageLocators.GEOZONES_BASE_URL)
     ])
     def test_admin_should_see_alpha_order_for_locale(self, base_url, logged_in_admin):
         self.driver.get(base_url)
+
         locale_text_list = []
-        for element in self.driver.find_elements(*AdminPageLocators.LOCALE_TEXT):
+        locale_element_list = self.driver.find_elements(*AdminPageLocators.LOCALE_TEXT)
+        for element in locale_element_list:
             locale_text_list.append(element.text)
 
         assert locale_text_list == sorted(locale_text_list)
 
     def test_admin_should_see_alpha_order_for_locale_zones_countries(self, logged_in_admin):
-        self.driver.get(AdminPageLocators.BASE_URL_COUNTRIES)
+        self.driver.get(AdminPageLocators.COUNTRIES_BASE_URL)
+
         locale_count = len(self.driver.find_elements(*AdminPageLocators.LOCALE_ZONE))
-        for i in range(0, locale_count):
+        for i in range(0, locale_count - 1):
             locale_zone_with_text = self.driver.find_elements(*AdminPageLocators.LOCALE_ZONE)[i]
             if locale_zone_with_text.text != '0':
-                self.driver.find_elements(*AdminPageLocators.LOCALE_EDIT_BUTTON)[i].click()
+                self.driver.find_elements(*AdminPageLocators.COUNTRIES_LOCALE_EDIT_BUTTON)[i].click()
 
                 zone_text_list = []
-                for element in self.driver.find_elements(*AdminPageLocators.ZONE_TEXT_COUNTRIES):
+                for element in self.driver.find_elements(*AdminPageLocators.COUNTRIES_ZONE_TEXT):
                     zone_text_list.append(element.text)
 
                 assert zone_text_list == sorted(zone_text_list)
-                self.driver.get(AdminPageLocators.BASE_URL_COUNTRIES)
+                self.driver.get(AdminPageLocators.COUNTRIES_BASE_URL)
 
     def test_admin_should_see_alpha_order_for_locale_zones_geozones(self, logged_in_admin):
-        self.driver.get(AdminPageLocators.BASE_URL_GEOZONES)
+        self.driver.get(AdminPageLocators.GEOZONES_BASE_URL)
         locale_count = len(self.driver.find_elements(*AdminPageLocators.LOCALE_ZONE))
-        for i in range(0, locale_count):
+        for i in range(0, locale_count - 1):
             locale_zone_with_text = self.driver.find_elements(*AdminPageLocators.LOCALE_ZONE)[i]
             if locale_zone_with_text.text != '0':
-                self.driver.find_elements(*AdminPageLocators.LOCALE_EDIT_BUTTON)[i].click()
+                self.driver.find_elements(*AdminPageLocators.GEOZONES_LOCALE_EDIT_BUTTON)[i].click()
 
                 zone_text_list = []
-                for element in self.driver.find_elements(*AdminPageLocators.ZONE_TEXT_GEOZONES):
+                for element in self.driver.find_elements(*AdminPageLocators.GEOZONES_ZONE_TEXT):
                     zone_text_list.append(element.text)
 
                 assert zone_text_list == sorted(zone_text_list)
-                self.driver.get(AdminPageLocators.BASE_URL_GEOZONES)
+                self.driver.get(AdminPageLocators.GEOZONES_BASE_URL)
