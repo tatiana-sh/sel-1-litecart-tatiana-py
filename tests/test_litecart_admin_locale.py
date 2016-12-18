@@ -30,34 +30,24 @@ class TestAdminLocale(TestBase):
 
         assert locale_text_list == sorted(locale_text_list)
 
-    def test_admin_should_see_alpha_order_for_locale_zones_countries(self, logged_in_admin):
-        self.driver.get(AdminPageLocators.COUNTRIES_BASE_URL)
+    @pytest.mark.parametrize("base_url,edit_button,zone_text", [
+        (AdminPageLocators.COUNTRIES_BASE_URL, AdminPageLocators.COUNTRIES_LOCALE_EDIT_BUTTON,
+         AdminPageLocators.COUNTRIES_ZONE_TEXT),
+        (AdminPageLocators.GEOZONES_BASE_URL, AdminPageLocators.GEOZONES_LOCALE_EDIT_BUTTON,
+         AdminPageLocators.GEOZONES_ZONE_TEXT)
+    ])
+    def test_admin_should_see_alpha_order_for_locale_zones(self, base_url, edit_button, zone_text, logged_in_admin):
+        self.driver.get(base_url)
         ## get a number of elements with locale texts
         locale_count = len(self.driver.find_elements(*AdminPageLocators.LOCALE_ZONE_NOT_NULL))
         for i in range(0, locale_count - 1):
             ## go to zone list
-            locale_zone_with_text = self.driver.find_elements(*AdminPageLocators.COUNTRIES_LOCALE_EDIT_BUTTON)[i]
+            locale_zone_with_text = self.driver.find_elements(*edit_button)[i]
             locale_zone_with_text.click()
             ## extract texts from element list
-            zone_element_list = self.driver.find_elements(*AdminPageLocators.COUNTRIES_ZONE_TEXT)
+            zone_element_list = self.driver.find_elements(*zone_text)
             zone_text_list = list(map((lambda x: x.text), zone_element_list))
 
             assert zone_text_list == sorted(zone_text_list)
             ## go back to continue the check
-            self.driver.get(AdminPageLocators.COUNTRIES_BASE_URL)
-
-    def test_admin_should_see_alpha_order_for_locale_zones_geozones(self, logged_in_admin):
-        self.driver.get(AdminPageLocators.GEOZONES_BASE_URL)
-        ## get a number of elements with locale texts
-        locale_count = len(self.driver.find_elements(*AdminPageLocators.LOCALE_ZONE_NOT_NULL))
-        for i in range(0, locale_count - 1):
-            ## go to zone list
-            locale_zone_with_text = self.driver.find_elements(*AdminPageLocators.GEOZONES_LOCALE_EDIT_BUTTON)[i]
-            locale_zone_with_text.click()
-            ## extract texts from element list
-            zone_element_list = self.driver.find_elements(*AdminPageLocators.GEOZONES_ZONE_TEXT)
-            zone_text_list = list(map((lambda x: x.text), zone_element_list))
-
-            assert zone_text_list == sorted(zone_text_list)
-            ## go back to continue the check
-            self.driver.get(AdminPageLocators.GEOZONES_BASE_URL)
+            self.driver.get(base_url)
