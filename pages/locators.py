@@ -83,6 +83,7 @@ class ProductPageLocators(object):
     PRODUCT_CAMPAIGN_PRICE = (By.CSS_SELECTOR, ".campaign-price")
     ADD_TO_CART_BTN = (By.NAME, "add_cart_product")
     SIZE_DROPDOWN = (By.NAME, "options[Size]")
+    PRODUCT_SIZE_VALUE = (By.CSS_SELECTOR, "[value]")
 
 
 class CartPageLocators(object):
