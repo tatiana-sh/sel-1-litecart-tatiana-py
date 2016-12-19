@@ -73,6 +73,6 @@ class TestLitecartProductView(TestBase):
         assert "rgba(102, 102, 102, 1)" == current_product_regular_price_color
         assert "rgba(204, 0, 0, 1)" == current_product_campaign_price_color
         assert "line-through" == first_product_regular_price_style
-        assert "400" < first_product_campaign_price_style
+        assert "bold" == first_product_campaign_price_style
         assert "line-through" == current_product_regular_price_style
-        assert "400" < current_product_campaign_price_style
+        assert "bold" == current_product_campaign_price_style
