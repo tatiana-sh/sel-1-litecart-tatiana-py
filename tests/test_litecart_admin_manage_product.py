@@ -41,8 +41,6 @@ class TestAdminManageProduct(TestBase):
         gender_uni = self.driver.find_elements(*AdminProductPageLocators.GENDER_UNI)[0]
         quantity = self.driver.find_elements(*AdminProductPageLocators.QUANTITY)[0]
         img_upload = self.driver.find_elements(*AdminProductPageLocators.IMG_UPLOAD)[0]
-        date_valid_from = self.driver.find_elements(*AdminProductPageLocators.DATE_VALID_FROM)[0]
-        date_valid_to = self.driver.find_elements(*AdminProductPageLocators.DATE_VALID_TO)[0]
 
         enable_btn.click()
         product_name_input.send_keys(unique_product_name)
@@ -102,3 +100,15 @@ class TestAdminManageProduct(TestBase):
 
         assert notice_success.is_displayed
         assert self.driver.find_elements_by_xpath("//*[contains(text(),'" + unique_product_name + "')]")[0].is_displayed
+
+    def test_admin_should_see_no_logs_in_console(self, logged_in_admin):
+        self.driver.get(AdminCatalogPageLocators.BASE_URL_CATEGORY_1)
+
+        num_products = len(self.driver.find_elements(*AdminCatalogPageLocators.EDIT_PRODUCT_BTN)) - 1
+        for i in range(0, num_products):
+            edit_product_btn = self.driver.find_elements(*AdminCatalogPageLocators.EDIT_PRODUCT_BTN)[i]
+            edit_product_btn.click()
+
+            assert [] == self.driver.get_log("browser")
+
+            self.driver.get(AdminCatalogPageLocators.BASE_URL_CATEGORY_1)
