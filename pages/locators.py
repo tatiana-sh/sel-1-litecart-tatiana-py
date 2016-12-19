@@ -27,8 +27,10 @@ class AdminPageLocators(object):
 
 class AdminCatalogPageLocators(object):
     BASE_URL = "http://localhost/litecart/admin/?app=catalog&doc=catalog"
+    BASE_URL_CATEGORY_1 = "http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1"
     ADD_PRODUCT_BTN = (By.CSS_SELECTOR, "[href*='category_id=0&app=catalog&doc=edit_product']")
     NOTICE_SUCCESS = (By.CSS_SELECTOR, ".notice.success")
+    EDIT_PRODUCT_BTN = (By.CSS_SELECTOR, "[href*='product_id='][title]")
 
 
 class AdminProductPageLocators(object):
