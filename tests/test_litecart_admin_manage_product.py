@@ -54,8 +54,8 @@ class TestAdminManageProduct(TestBase):
         quantity.clear()
         quantity.send_keys("10")
         img_upload.send_keys(os.getcwd() + "/image.png")
-        date_valid_from.send_keys("2016-01-01")
-        date_valid_to.send_keys("2019-01-01")
+        self.driver.execute_script("$('[name=date_valid_from]').val('2016-01-01');")
+        self.driver.execute_script("$('[name=date_valid_to]').val('2019-01-01');")
 
         info_tab_link = self.driver.find_elements(*AdminProductPageLocators.INFO_TAB_LINK)[0]
         info_tab_link.click()
