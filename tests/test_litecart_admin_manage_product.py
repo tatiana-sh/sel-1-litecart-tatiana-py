@@ -1,27 +1,14 @@
 import os
 import time
 
-import pytest
 from selenium.webdriver.common.keys import Keys
 
 from pages.locators import AdminCatalogPageLocators
-from pages.locators import AdminLoginPageLocators
 from pages.locators import AdminProductPageLocators
-from tests.test_base import TestBase
+from tests.test_base_admin import TestBaseAdmin
 
 
-class TestAdminManageProduct(TestBase):
-    @pytest.fixture()
-    def logged_in_admin(self, request, driver):
-        request.cls.driver.get(AdminLoginPageLocators.BASE_URL)
-
-        username_input = self.driver.find_element(*AdminLoginPageLocators.USERNAME_INPUT)
-        password_input = self.driver.find_element(*AdminLoginPageLocators.PASSWORD_INPUT)
-        login_btn = self.driver.find_element(*AdminLoginPageLocators.LOGIN_BUTTON)
-
-        username_input.send_keys("admin")
-        password_input.send_keys("admin")
-        login_btn.click()
+class TestAdminManageProduct(TestBaseAdmin):
 
     def test_admin_should_be_able_to_add_new_product_to_catalog(self, logged_in_admin):
         self.driver.get(AdminCatalogPageLocators.BASE_URL)
