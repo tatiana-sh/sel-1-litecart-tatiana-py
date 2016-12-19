@@ -42,3 +42,24 @@ class ProductPageLocators(object):
     PRODUCT_NAME = (By.CSS_SELECTOR, ".title")
     PRODUCT_REGULAR_PRICE = (By.CSS_SELECTOR, ".regular-price")
     PRODUCT_CAMPAIGN_PRICE = (By.CSS_SELECTOR, ".campaign-price")
+
+
+class UserLoginPageLocators(object):
+    REGISTER_LINK = (By.CSS_SELECTOR, '[href*="create_account"]')
+    EMAIL_INPUT = (By.NAME, 'email')
+    PASSWORD_INPUT = (By.NAME, 'password')
+    LOGIN_BUTTON = (By.NAME, 'login')
+    LOGOUT_BUTTON = (By.CSS_SELECTOR, "[href*='logout']")
+
+
+class UserRegisterPageLocators(object):
+    EMAIL_INPUT = (By.NAME, 'email')
+    PASSWORD_INPUT = (By.NAME, 'password')
+    FIRSTNAME_INPUT = (By.NAME, 'firstname')
+    LASTNAME_INPUT = (By.NAME, 'lastname')
+    ADDRESS1_INPUT = (By.NAME, 'address1')
+    POSTCODE_INPUT = (By.NAME, 'postcode')
+    CITY_INPUT = (By.NAME, 'city')
+    PHONE_INPUT = (By.NAME, 'phone')
+    CONFIRM_PASSWORD_INPUT = (By.NAME, 'confirmed_password')
+    REGISTER_BUTTON = (By.NAME, 'create_account')
