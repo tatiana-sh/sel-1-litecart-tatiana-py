@@ -78,7 +78,15 @@ class ProductPageLocators(object):
     PRODUCT_NAME = (By.CSS_SELECTOR, ".title")
     PRODUCT_REGULAR_PRICE = (By.CSS_SELECTOR, ".regular-price")
     PRODUCT_CAMPAIGN_PRICE = (By.CSS_SELECTOR, ".campaign-price")
+    ADD_TO_CART_BTN = (By.NAME, "add_cart_product")
+    SIZE_DROPDOWN = (By.NAME, "options[Size]")
 
+
+class CartPageLocators(object):
+    CART_PRODUCT_COUNTER = (By.CSS_SELECTOR, "#cart .quantity")
+    CHECKOUT_LINK = (By.CSS_SELECTOR, "#cart [href*='checkout']")
+    ORDER_QUANTITY = (By.CSS_SELECTOR, ".dataTable tr:not(.header) > td")
+    REMOVE_FROM_CART_BTN = (By.NAME, "remove_cart_item")
 
 class UserLoginPageLocators(object):
     REGISTER_LINK = (By.CSS_SELECTOR, '[href*="create_account"]')
