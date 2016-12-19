@@ -26,7 +26,19 @@ class AdminPageLocators(object):
 
 class MainPageLocators(object):
     BASE_URL = "http://localhost/litecart/en/"
+    CAMPAIGNS_SECTION = (By.CSS_SELECTOR, "#box-campaigns")
     PRODUCT = (By.CSS_SELECTOR, ".product")
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".name")
+    PRODUCT_REGULAR_PRICE = (By.CSS_SELECTOR, ".regular-price")
+    PRODUCT_CAMPAIGN_PRICE = (By.CSS_SELECTOR, ".campaign-price")
+    PRODUCT_LINK = (By.CSS_SELECTOR, ".link")
     PRODUCT_STICKER = (By.CSS_SELECTOR, ".sticker")
     NAVIGATION_MENU_ITEM = (By.CSS_SELECTOR, "#box-category-tree .content > ul > li > a")
     NAVIGATION_MENU_ITEM_SUBNODE = (By.CSS_SELECTOR, "#box-category-tree .content > ul > li li > a")
+
+
+class ProductPageLocators(object):
+    PRODUCT = (By.CSS_SELECTOR, "#box-product")
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".title")
+    PRODUCT_REGULAR_PRICE = (By.CSS_SELECTOR, ".regular-price")
+    PRODUCT_CAMPAIGN_PRICE = (By.CSS_SELECTOR, ".campaign-price")
