@@ -2,10 +2,10 @@ import pytest
 
 from pages.locators import AdminLoginPageLocators
 from pages.locators import AdminPageLocators
-from tests.test_base import TestBase
+from tests.test_base_admin import TestBaseAdmin
 
 
-class TestLitecartAdminNavigation(TestBase):
+class TestLitecartAdminNavigation(TestBaseAdmin):
     @pytest.fixture()
     def logged_in_admin(self, request, driver):
         request.cls.driver.get(AdminLoginPageLocators.BASE_URL)

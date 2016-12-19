@@ -1,9 +1,8 @@
 import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 
-from pages.locators import AdminLoginPageLocators
 from pages.locators import AdminPageLocators
-from tests.test_base import TestBase
+from tests.test_base_admin import TestBaseAdmin
 
 
 def there_is_window_other_than(driver, old_windows, timeout=10):
@@ -11,18 +10,8 @@ def there_is_window_other_than(driver, old_windows, timeout=10):
         lambda driver: len(old_windows) != len(driver.window_handles))
     return driver.window_handles[1]
 
-class TestAdminLocale(TestBase):
-    @pytest.fixture()
-    def logged_in_admin(self, request, driver):
-        request.cls.driver.get(AdminLoginPageLocators.BASE_URL)
 
-        username_input = self.driver.find_element(*AdminLoginPageLocators.USERNAME_INPUT)
-        password_input = self.driver.find_element(*AdminLoginPageLocators.PASSWORD_INPUT)
-        login_btn = self.driver.find_element(*AdminLoginPageLocators.LOGIN_BUTTON)
-
-        username_input.send_keys("admin")
-        password_input.send_keys("admin")
-        login_btn.click()
+class TestAdminLocale(TestBaseAdmin):
 
     @pytest.mark.parametrize("base_url", [
         (AdminPageLocators.COUNTRIES_BASE_URL),
