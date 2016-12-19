@@ -1,9 +1,15 @@
 import pytest
+from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.locators import AdminLoginPageLocators
 from pages.locators import AdminPageLocators
 from tests.test_base import TestBase
 
+
+def there_is_window_other_than(driver, old_windows, timeout=10):
+    WebDriverWait(driver, timeout).until(
+        lambda driver: len(old_windows) != len(driver.window_handles))
+    return driver.window_handles[1]
 
 class TestAdminLocale(TestBase):
     @pytest.fixture()
@@ -51,3 +57,26 @@ class TestAdminLocale(TestBase):
             assert zone_text_list == sorted(zone_text_list)
             ## go back to continue the check
             self.driver.get(base_url)
+
+    def test_reference_links_should_lead_to_new_windows(self, logged_in_admin):
+        self.driver.get(AdminPageLocators.COUNTRIES_BASE_URL)
+
+        locale_zone_with_text = self.driver.find_elements(*AdminPageLocators.COUNTRIES_LOCALE_EDIT_BUTTON)[0]
+        locale_zone_with_text.click()
+
+        external_link_count = len(self.driver.find_elements(*AdminPageLocators.COUNTRIES_EXTERNAL_LINK))
+
+        for i in range(0, external_link_count - 1):
+            main_window = self.driver.current_window_handle
+            old_windows = self.driver.window_handles
+
+            external_link = self.driver.find_elements(*AdminPageLocators.COUNTRIES_EXTERNAL_LINK)[i]
+            external_link.click()
+
+            new_window = there_is_window_other_than(self.driver, old_windows)
+            self.driver.switch_to_window(new_window)
+
+            assert new_window != main_window
+
+            self.driver.close()
+            self.driver.switch_to_window(main_window)

@@ -22,6 +22,7 @@ class AdminPageLocators(object):
     GEOZONES_LOCALE_EDIT_BUTTON = (By.CSS_SELECTOR, "[name='geo_zones_form'] a[title]")
     GEOZONES_ZONE_TEXT = (By.CSS_SELECTOR, "[name*='zone_code'] > [selected]")
     COUNTRIES_ZONE_TEXT = (By.XPATH, "//*[@id='table-zones']//tr[td[a]]/td[3]")
+    COUNTRIES_EXTERNAL_LINK = (By.XPATH, "//a[i[contains(@class,'fa-external-link')]]")
 
 
 class AdminCatalogPageLocators(object):
