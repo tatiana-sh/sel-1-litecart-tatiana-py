@@ -24,6 +24,42 @@ class AdminPageLocators(object):
     COUNTRIES_ZONE_TEXT = (By.XPATH, "//*[@id='table-zones']//tr[td[a]]/td[3]")
 
 
+class AdminCatalogPageLocators(object):
+    BASE_URL = "http://localhost/litecart/admin/?app=catalog&doc=catalog"
+    ADD_PRODUCT_BTN = (By.CSS_SELECTOR, "[href*='category_id=0&app=catalog&doc=edit_product']")
+    NOTICE_SUCCESS = (By.CSS_SELECTOR, ".notice.success")
+
+
+class AdminProductPageLocators(object):
+    ENABLE_BUTTON = (By.CSS_SELECTOR, "[name='status'][value='1']")
+    PRODUCT_NAME_INPUT = (By.NAME, "name[en]")
+    PRODUCT_CODE_INPUT = (By.NAME, "code")
+    CATEGORIES = (By.NAME, "categories[]")
+    DEFAULT_CATEGORY = (By.NAME, "default_category_id")
+    GENDER_MALE = (By.CSS_SELECTOR, "[name='product_groups[]'][value='1-1']")
+    GENDER_FEMALE = (By.CSS_SELECTOR, "[name='product_groups[]'][value='1-2']")
+    GENDER_UNI = (By.CSS_SELECTOR, "[name='product_groups[]'][value='1-3']")
+    QUANTITY = (By.NAME, "quantity")
+    IMG_UPLOAD = (By.CSS_SELECTOR, "[type='file']")
+    ADD_NEW_IMG_BTN = (By.CSS_SELECTOR, "#add-new-image")
+    DATE_VALID_FROM = (By.NAME, "date_valid_from")
+    DATE_VALID_TO = (By.NAME, "date_valid_to")
+    INFO_TAB_LINK = (By.CSS_SELECTOR, "[href='#tab-information']")
+    MANUFACTURER_DROPDOWN = (By.NAME, "manufacturer_id")
+    SUPPLIER_DROPDOWN = (By.NAME, "supplier_id")
+    KEYWORDS_INPUT = (By.NAME, "keywords")
+    SHORT_DESCRIPTION_INPUT = (By.NAME, "short_description[en]")
+    DESCRIPTION_EDITOR = (By.CLASS_NAME, "trumbowyg")
+    HEAD_INPUT = (By.NAME, "head_title[en]")
+    META_INPUT = (By.NAME, "meta_description[en]")
+    PRICES_TAB_LINK = (By.CSS_SELECTOR, "[href='#tab-prices']")
+    PURCHASE_PRICE_INPUT = (By.NAME, "purchase_price")
+    PURCHASE_PRICE_UNIT_DROPDOWN = (By.NAME, "purchase_price_currency_code")
+    TAX_CLASS_DROPDOWN = (By.NAME, "tax_class_id")
+    PRICE_USD_INPUT = (By.NAME, "prices[USD]")
+    PRICE_EURO_INPUT = (By.NAME, "prices[EUR]")
+    SAVE_BUTTON = (By.NAME, "save")
+
 class MainPageLocators(object):
     BASE_URL = "http://localhost/litecart/en/"
     CAMPAIGNS_SECTION = (By.CSS_SELECTOR, "#box-campaigns")
